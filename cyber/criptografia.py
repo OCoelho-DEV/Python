@@ -13,17 +13,17 @@ def caesar(ASCII_unicode: int, shift: int):
     
     if shift >= 0:
         if ASCII_unicode in UPPERCASE_RANGE and new_code > UPPER_Z_LIMIT:
-            ASCII_unicode -= ALPHABET_SIZE
+            new_code -= ALPHABET_SIZE
 
         if ASCII_unicode in  LOWERCASE_RANGE and new_code > LOWER_Z_LIMIT:
-            ASCII_unicode -= ALPHABET_SIZE
+            new_code -= ALPHABET_SIZE
     
     if shift < 0:
         if ASCII_unicode in UPPERCASE_RANGE and new_code < UPPER_A_LIMIT:
-            ASCII_unicode += ALPHABET_SIZE
+            new_code += ALPHABET_SIZE
 
         if ASCII_unicode in  LOWERCASE_RANGE and new_code < LOWER_A_LIMIT:
-            ASCII_unicode += ALPHABET_SIZE
+            new_code += ALPHABET_SIZE
     
     return chr(new_code)
 
