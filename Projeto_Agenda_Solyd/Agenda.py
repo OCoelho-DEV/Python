@@ -48,10 +48,12 @@ def add_contact(name, number, email, address):
     "number": number,
     "email": email,
     "address": address
-}
+    }
+    print(f">>>>> Contact {name} added with success")
+
 
     
 # show_contacts()
 # search_contact("João", "Giovana", "Rafael", "Maria")
 add_contact("João", "(21) 99999-9999", "email1", "avenue 1")
-show_contacts()
+
