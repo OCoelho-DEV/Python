@@ -3,7 +3,6 @@
 ## TODO 📝
 - [ ] Criar a interface do usuário AKA: MENU
 - [ ] Criar método para excluir contato
-- [ ] Criar método para editar contato
 - [ ] Criar método para salvar a agenda
 - [ ] Criar método para dar load na agenda
 - [ ] Exportar a agenda em um arquivo CSV
@@ -16,3 +15,4 @@
 - [x] Escolher estrutura de dados adequada à agenda
 - [x] Criar método para buscar contato
 - [x] Criar método para incluir contato
+- [x] Criar método para editar contato

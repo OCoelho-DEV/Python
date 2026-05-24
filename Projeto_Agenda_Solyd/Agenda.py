@@ -15,7 +15,7 @@ SCHEDULE = {
 def validate_string(func):
     def wrapper(*args):
         for value in args:
-            if not isinstance(value, str):
+            if value is not None and not isinstance(value, str):
                 print(f'{value} must be a string')
                 return
         return func(*args)
@@ -43,17 +43,27 @@ def search_contact(*args):
             print('-' * 50)
 
 @validate_string
-def add_contact(name, number, email, address):
+def add_or_edit_contact(name, number, email, address):
+    action = "updated" if name in SCHEDULE else "added"
+
+    old_contact = SCHEDULE.get(name, {})
+
     SCHEDULE[name] = {
-    "number": number,
-    "email": email,
-    "address": address
+    "number": number if number is not None else old_contact.get("number", ""),
+    "email": email if email is not None else old_contact.get("email", ""),
+    "address": address if address is not None \
+        else old_contact.get("address", "")
     }
-    print(f">>>>> Contact {name} added with success")
+    print(f">>>>> Contact {name} {action} with success")
 
 
-    
+
+
+
 # show_contacts()
 # search_contact("João", "Giovana", "Rafael", "Maria")
-add_contact("João", "(21) 99999-9999", "email1", "avenue 1")
+# add_or_edit_contact("João", "22222" ,"joaoemail", "address")
+# add_or_edit_contact("Rafael", "22222" ,"rafaelemail", None)
+# add_or_edit_contact("foo", "22222" ,"fooemail", None)
+show_contacts()
 
