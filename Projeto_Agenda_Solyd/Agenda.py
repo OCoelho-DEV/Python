@@ -92,11 +92,10 @@ def import_contacts(file_name):
         print(error)
 
 def save():
-    export_contacts('database.csv')
-
+    export_contacts('Projeto_Agenda_Solyd/database.csv')
 def load():
     try:
-        with open('database.csv', 'r') as file:
+        with open('Projeto_Agenda_Solyd/database.csv', 'r') as file:
                 lines = file.readlines()
                 for line in lines:
                     name, number, email, address = line.strip().split(',')
@@ -128,7 +127,7 @@ if __name__ == '__main__':
     load()
     
     while True:
-        os.system('clear')
+        os.system('cls' if os.name == 'nt' else 'clear')
 
         print_menu()
         option = input('Escolha uma opção: ')
