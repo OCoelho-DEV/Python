@@ -1,10 +1,7 @@
 # Projeto 2 - Pokemon Game
 
 ## ToDo
-- [ ] Definir personagens
-- [ ] Definir player
-- [ ] Capturando pokemons
-- [ ] Definir inimigo
+
 - [ ] Batalha de pokemons
 - [ ] Criar gameplay
 - [ ] Escolha inicial
@@ -20,3 +17,7 @@
 ## Done
 - [x] Definindo a classe Pokemon
 - [x] Definir diversos tipos de Pokemon
+- [x] Definir personagens
+- [x] Definir player
+- [x] Capturando pokemons
+- [x] Definir inimigo

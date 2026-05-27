@@ -1,8 +1,11 @@
+import random
+
 class Pokemon:
-    def __init__(self, specie, name=None, level=1):
+    poke_type = "Unknown"
+    def __init__(self, specie, name=None, level=None):
         self.specie = specie
         self.name = name if name else specie
-        self.level = level
+        self.level = level if level else random.randint(1,100)
 
     def __str__(self):
         aux = '' if self.name == self.specie else f'({self.specie})'
@@ -11,7 +14,7 @@ class Pokemon:
     def attack(self, enemy):
         print(f'{self} uses {self.attack_name} on {enemy}!')
 
-class EletricPokemon(Pokemon):
+class ElectricPokemon(Pokemon):
     poke_type = 'Electric'
     attack_name = 'thunderbolt'
     
@@ -22,10 +25,12 @@ class FirePokemon(Pokemon):
 class WaterPokemon(Pokemon):
     poke_type = 'Water'
     attack_name = 'water jet'
-    
-my_poke = FirePokemon('Charmander', 'Rafa')
-other_poke = EletricPokemon('Pikachu')
-my_friend_pokemon = WaterPokemon('Mudkip', level=50)
-my_poke.attack(my_friend_pokemon)
-my_friend_pokemon.attack(other_poke)
-other_poke.attack(my_poke)
+
+POKEMONS = [
+    FirePokemon("Charmander"),
+    FirePokemon("Vulpix"),
+    WaterPokemon("Squirtle"),
+    WaterPokemon("Psyduck"),
+    ElectricPokemon("Pikachu"),
+    ElectricPokemon("Magnemite")
+]
