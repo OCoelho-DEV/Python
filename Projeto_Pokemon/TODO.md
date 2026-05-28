@@ -1,17 +1,9 @@
 # Projeto 2 - Pokemon Game
 
 ## ToDo
-
-- [ ] Batalha de pokemons
-- [ ] Criar gameplay
-- [ ] Escolha inicial
-- [ ] Luta inicial
-
 ---
 
 ## Doing
-
-
 ---
 
 ## Done
@@ -21,3 +13,8 @@
 - [x] Definir player
 - [x] Capturando pokemons
 - [x] Definir inimigo
+- [x] Batalha de pokemons
+- [x] Luta inicial
+- [x] Ganhar Dinheiro
+- [x] Escolha inicial
+- [x] Criar gameplay
