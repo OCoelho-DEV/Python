@@ -144,7 +144,7 @@ class Player(Person):
             while True:
                 print(f'You have {self.pokeballs} pokeballs')
                 choice = input('Catch it? [Y]/[N]: ').upper()
-                if self.pokeballs > 0 and choice == 'Y':
+                if self.pokeballs > 0:
                     match choice:
                         case 'Y':
                             if tries >= 3:
@@ -174,7 +174,7 @@ class Player(Person):
                         case _:
                             print('Invalid option')
                             continue
-                else:
+                elif self.pokeballs <= 0:
                     print('Not enough pokeballs!')
                     response = input('Want to buy pokeballs? [Y]/[N]: ').upper()
                     match response:
@@ -190,6 +190,8 @@ class Player(Person):
                         case _:
                             print('Invalid Option')
                             continue
+                else:
+                    print('Leaving from here...')
         else:
             print('This exploration yielded nothing.')
 
