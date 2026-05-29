@@ -125,7 +125,7 @@ class Player(Person):
         self.show_money()
     
     def buy_pokeballs(self, amount):
-        pokeballs_cost = 10 * int(amount)
+        pokeballs_cost = 30 * int(amount)
         if self.money >= pokeballs_cost:
             self.money -= pokeballs_cost
             self.pokeballs += int(amount)
