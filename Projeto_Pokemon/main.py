@@ -100,7 +100,7 @@ if __name__ == "__main__":
         print("3 - View Pokédex")
         print("4 - Buy Pokeballs")
         print("0 - Exit game")
-        if player.money == 0 and player.pokeballs == 0 and \
+        if player.money < 30 and player.pokeballs == 0 and \
             not player.pokemons:
             print('You lost all!')
             player.earn_money(100)
