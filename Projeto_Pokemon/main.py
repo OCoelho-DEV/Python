@@ -127,7 +127,7 @@ if __name__ == "__main__":
             
             case "4":
                 player.show_money()
-                print('Pokeball costs 10 Coins')
+                print('Pokeball costs 30 Coins')
                 amount = input('Amount of pokeballs: ')
                 player.buy_pokeballs(amount)
                 save_game(player)

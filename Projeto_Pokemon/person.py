@@ -144,7 +144,7 @@ class Player(Person):
             while True:
                 print(f'You have {self.pokeballs} pokeballs')
                 choice = input('Catch it? [Y]/[N]: ').upper()
-                if self.pokeballs > 0:
+                if self.pokeballs > 0 and choice == 'Y':
                     match choice:
                         case 'Y':
                             if tries >= 3:
@@ -180,7 +180,7 @@ class Player(Person):
                     match response:
                         case 'Y':
                             self.show_money()
-                            print('Pokeball costs 10 Coins')
+                            print('Pokeball costs 30 Coins')
                             amount = input('Amount of pokeballs: ')
                             self.buy_pokeballs(amount)
                             continue
