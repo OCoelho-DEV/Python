@@ -129,7 +129,7 @@ class Player(Person):
         if self.money >= pokeballs_cost:
             self.money -= pokeballs_cost
             self.pokeballs += int(amount)
-            print(f'Now you have {self.pokeballs}')
+            print(f'Now you have {self.pokeballs} pokeballs')
             return
         print('Not enought money')
         self.show_money()
@@ -142,7 +142,7 @@ class Player(Person):
             print(f'A sauvage pokemon appeared! {random_poke}')
 
             while True:
-                print(f'You have {self.pokeballs}')
+                print(f'You have {self.pokeballs} pokeballs')
                 choice = input('Catch it? [Y]/[N]: ').upper()
                 if self.pokeballs > 0:
                     match choice:
