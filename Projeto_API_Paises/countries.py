@@ -1,4 +1,5 @@
 import json
+import sys
 
 import requests
 
@@ -21,7 +22,7 @@ def request(url):
         if status_code == 200:
             return response.text
         else:
-            print(f'Can not access: {status_code}')
+            print(f'Not found: {status_code}')
     except:
         print('Error at request:', url)
 
@@ -31,12 +32,20 @@ def parsing(response_text):
     except:
         print('Error at parsing text')
 
-def countries_count(countries_list):
-    return len(countries_list)
+def countries_count(countries_list=None):
+    response = request(URL_ALL)
+    if response:
+        countries_list = parsing(response)
+        if countries_list:
+            return len(countries_list)
 
-def list_countries(countries_list):
-    for country in countries_list:
-        print(country['name']['common'])
+def list_countries(countries_list=None):
+    response = request(URL_ALL)
+    if response:
+        countries_list = parsing(response)
+        if countries_list:
+            for country in countries_list:
+                print(country['name']['common'])
 
 def show_population(country_name):
     response = request(f'{URL_NAME}{country_name}')
@@ -47,7 +56,8 @@ def show_population(country_name):
             return
         
         for country in countries_list:
-            print(f"{country['name']['common']}: {country['population']:,}")
+            print(f"{country['name']['common']}: {country['population']:,}"
+                  " inhabitants")
 
 def show_currencies(country_name):
     response = request(f'{URL_NAME}{country_name}')
@@ -63,13 +73,35 @@ def show_currencies(country_name):
             for code, currency_data in currencies.items():
                 print(f"{currency_data['name']} - {code}")
 
+def read_country_name():
+    try:
+        country_name = sys.argv[2]
+        return country_name
+    except:
+        print('Is necessary to pass the country name on'
+        ' <country name>')
+
 if __name__ == '__main__':
-    # response_text = request(URL_ALL)
-    # if response_text:
-    #     countries_list = parsing(response_text)
-    #     if countries_list:
-    #         countries_count(countries_list)
-    #         list_countries(countries_list)
-    #         show_population('brazil')
-    # show_population('usa')
-    show_currencies('bra')
+    if len(sys.argv) == 1:
+        print('## Welcome at countries system!')
+        print('Usage: python Projeto_API_Paises/countries.py'
+        ' <action> <country name>')
+        print('Actions: Count, Currency, Population, List')
+    else:
+        arg1 = sys.argv[1]
+        match arg1.lower():
+            case 'count':
+                countries_number = countries_count()
+                print(f'Exists {countries_number} countries in the world!')
+            case 'currency':
+                country_name = read_country_name()
+                if country_name:
+                    show_currencies(country_name)
+            case 'population':
+                country_name = read_country_name()
+                if country_name:
+                    show_population(country_name)
+            case 'list':
+                list_countries()
+            case _:
+                print('Invalid Argument')
