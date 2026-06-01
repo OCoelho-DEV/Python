@@ -1,10 +1,9 @@
 # Projeto 2 - Crawler de Anúncios
-
+---
 ## ToDo
 ---
-- [ ] Requisição de busca
-- [ ] Criar regex para identificar número
 - [ ] Parsing da busca e identificar links
+- [ ] Criar regex para identificar número
 - [ ] Parsing do anúncio de identificar número
 - [ ] Busca eficiente
 - [ ] Tabela para salvar resultados
@@ -13,6 +12,7 @@
 
 ## Doing
 ---
+- [ ] Requisição de busca
 
 ## Done
 ---
