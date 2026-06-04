@@ -1,10 +1,14 @@
 import re
+import threading
 
 import requests
 from bs4 import BeautifulSoup
 
 DOMAIN = 'https://django-anuncios.solyd.com.br'
 URL_AUTOMOBILES = "https://django-anuncios.solyd.com.br/automoveis/"
+
+LINKS = []
+NUMBERS = []
 
 def request(url):
     try:
@@ -50,22 +54,46 @@ def find_number(soup):
     
     regex = re.findall(
         r'\(?0?([1-9]{2})[ \-\.\)]{0,2}(9?[ \-\.]?\d{4})[ \-\.]?(\d{4})',
-        description)
+        description
+    )
     
     if regex:
         return regex
 
-response_search = request(URL_AUTOMOBILES)
+def uncover_numbers():
+    while True:
+        if not LINKS:
+            return
+        
+        link = LINKS.pop(0)
+        response_announcement = request(DOMAIN + link)
 
-if response_search:
-    soup_search = parsing(response_search)
-    if soup_search:
-        links = find_links(soup_search)
-        for link in links:
-            response_announcement = request(DOMAIN + link)
-            if response_announcement:
-                soup_announcement = parsing(response_announcement)
-                if soup_announcement:
-                    number = find_number(soup_announcement)
-                    print(number)
+        if response_announcement:
+            soup_announcement = parsing(response_announcement)
+            if soup_announcement:
+                numbers = find_number(soup_announcement)
+                if numbers:
+                    for number in numbers:
+                        print(f'\nFound telephone number: {number}')
+                        NUMBERS.append(number)
 
+
+if __name__ == '__main__':
+    response_search = request(URL_AUTOMOBILES)
+    if response_search:
+        soup_search = parsing(response_search)
+        if soup_search:
+            LINKS = find_links(soup_search)
+            
+            THREADS = []
+            for i in range(10):
+                thread = threading.Thread(target=uncover_numbers)
+                THREADS.append(thread)
+            
+            for thread in THREADS:
+                thread.start()
+
+            for thread in THREADS:
+                thread.join()
+                
+            print(NUMBERS)
