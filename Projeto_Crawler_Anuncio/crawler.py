@@ -76,7 +76,16 @@ def uncover_numbers():
                     for number in numbers:
                         print(f'\nFound telephone number: {number}')
                         NUMBERS.append(number)
+                        save_number(number)
 
+def save_number(number):
+    number_formated = f'({number[0]}) {number[1]}-{number[2]}\n'
+    try:
+        with open('Projeto_Crawler_Anuncio/numbers.csv', 'a') as file:
+            file.write(number_formated)
+    except:
+        print('Error at save numbers file')
+ 
 
 if __name__ == '__main__':
     response_search = request(URL_AUTOMOBILES)
@@ -96,4 +105,3 @@ if __name__ == '__main__':
             for thread in THREADS:
                 thread.join()
                 
-            print(NUMBERS)

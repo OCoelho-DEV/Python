@@ -2,10 +2,6 @@
 ---
 ## ToDo
 ---
-- [ ] Tabela para salvar resultados
-- [ ] Salvar resultados
-- [ ] Refatorar código
-
 ## Doing
 ---
 ## Done
@@ -15,3 +11,6 @@
 - [x] Criar regex para identificar número
 - [x] Parsing do anúncio de identificar número
 - [x] Busca eficiente
+- [x] Tabela para salvar resultados
+- [x] Salvar resultados
+- [x] Refatorar código
