@@ -2,12 +2,22 @@ import ssl
 import json
 
 import websocket
+import bitstamp.client
 
-def buy():
-    pass
+import credentials
 
-def sell():
-    pass
+def client():
+    return bitstamp.client.Trading(username=credentials.USERNAME,
+                                    key=credentials.KEY,
+                                    secret=credentials.SECRET)
+
+def buy(amount_):
+    trading_client = client()
+    trading_client.buy_market_order(amount=amount_)
+
+def sell(amount_):
+    trading_client = client()
+    trading_client.buy_market_order(amount=amount_)
 
 def on_open(ws):
     print('Opened conection')
@@ -37,12 +47,6 @@ def on_message(ws, message):
     
     price = message['data']['price']
     print(price)
-    if price > 9000:
-        sell()
-    elif price < 8000:
-        buy()
-    else:
-        print('Waiting...')
 
 if __name__ == '__main__':
     ws = websocket.WebSocketApp("wss://ws.bitstamp.net",
@@ -52,4 +56,3 @@ if __name__ == '__main__':
                                 on_error=on_error)
     
     ws.run_forever(sslopt={"cert_reqs": ssl.CERT_NONE})
-    
