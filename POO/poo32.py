@@ -5,15 +5,16 @@
 # Em resumo: dataclasses são syntax sugar para criar classes normais.
 # Foi descrito na PEP 557 e adicionado na versão 3.7 do Python.
 # doc: https://docs.python.org/3/library/dataclasses.html
-from dataclasses import dataclass, asdict, astuple
+from dataclasses import dataclass, asdict, astuple, field, fields
 
 
 @dataclass() # init=False or init=True 
 # Order = bool
 class Person:
-    name: str
-    surname: str
-    age_: int
+    name: str = field(default='missing', repr=False)
+    surname: str = 'Missing'
+    age_: int = 20
+    addresses: list[str] = field(default_factory=list)
 
     def __post_init__(self):
         self.complete_name = f'{self.name} {self.surname}'
@@ -29,13 +30,15 @@ class Person:
 
 if __name__ == '__main__':
 
-    p1 = Person('Rafael', 'Coelho', 30)
+    p1 = Person()
+    print(p1)
+    # print(fields(p1))
     # print(p1.age)
     # p1.age = 100
     # print(p1.age)
-    print(asdict(p1).items())
-    print(asdict(p1).keys())
-    print(asdict(p1).values())
-    print(astuple(p1))
+    # print(asdict(p1).items())
+    # print(asdict(p1).keys())
+    # print(asdict(p1).values())
+    # print(astuple(p1))
 
     
